@@ -224,3 +224,8 @@ ul{
   padding: 6px 8px;
   pointer-events: none;
 }
+
+.tx {
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
