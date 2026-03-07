@@ -1,0 +1,96 @@
+/* --- Earth Object Identifier (fits existing theme) --- */
+.scanner-card { padding-bottom: 12px; }
+
+.scanner-ui{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+@media (min-width: 700px){
+  .scanner-ui{
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
+  }
+}
+
+.scanner-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px;
+}
+
+.scan-item,
+.scan-btn{
+  font: inherit;
+  color: #00ffff;
+  background: rgba(0,0,0,0.18);
+  border: 1px dashed rgba(0,255,255,0.55);
+  padding: 10px 10px;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* Override just scan-item layout */
+.scan-item{
+  text-align: center;      /* looks better in small boxes */
+  white-space: normal;     /* allow wrapping */
+  overflow-wrap: normal; /* prevent overflow */
+  word-break: break-word;  /* extra safety */
+  font-size: 13px;
+}
+
+.scan-item:hover,
+.scan-btn:hover{
+  border-color: #00ffff;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.scan-item:focus,
+.scan-btn:focus{
+  outline: 2px dashed #00ffff;
+  outline-offset: 3px;
+}
+
+.scanner-readout{
+  border: 1px dashed rgba(0,255,255,0.55);
+  background: rgba(0,0,0,0.18);
+  padding: 10px;
+}
+
+.readout-header{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(0, 255, 255, 0.75);
+  margin-bottom: 8px;
+}
+
+#readoutText{
+  margin: 0;
+  min-height: 170px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #00ffff;
+}
+
+.readout-actions{
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.scan-btn{
+  flex: 1;
+  text-align: center;
+}
+
+#readoutText {
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.4;
+}
+

@@ -1,0 +1,118 @@
+<!-- projects.html (your file + Lunar Alignment added, minimal changes) -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | nuit-extraterrestre</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/scanner.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/iss-radar.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- NEW -->
+    <link href="/moon.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+
+  <body>
+    <canvas id="sky"></canvas>
+
+      <div class="sky-controls" aria-label="Sky location controls">
+        <input id="skyLat" value="28.6">
+        <input id="skyLon" value="-81.3">
+        <button id="skyApply" type="button">apply</button>
+        <button id="skyGeo" type="button">use my location</button>
+    </div>
+    <div class="container">
+
+      <header class="site-header">
+        <h1>✦ Tools ✦</h1>
+        <p class="statusline">Tracking and Learning.</p>
+      </header>
+
+      <hr>
+
+      <p><a href="index.html">← Return</a></p>
+
+      <hr>
+
+      <section class="section">
+        <div class="grid">
+
+          <!-- LEFT COLUMN: ISS -->
+          <div class="card iss-card">
+            <strong>ISS Locator</strong>
+            <span class="whisper">live telemetry (auto-updating)</span>
+            <div id="issRadarMount"></div>
+          </div>
+
+          <!-- NEW CARD: Lunar Alignment (drops into the grid as another card) -->
+          <div class="card moon-card">
+            <strong>Lunar Alignment</strong>
+            <span class="whisper">real phase + illumination (USNO)</span>
+
+            <div class="moon-ui" id="moonMount" aria-live="polite">
+              <div class="moon-left">
+                <div class="moon-disc" id="moonDisc" role="img" aria-label="Moon phase visualization"></div>
+              </div>
+
+              <div class="moon-readout">
+                <div class="moon-row"><span class="moon-k">PHASE</span><span class="moon-v" id="moonPhase">—</span></div>
+                <div class="moon-row"><span class="moon-k">ILLUM</span><span class="moon-v" id="moonIllum">—</span></div>
+                <div class="moon-row"><span class="moon-k">AGE</span><span class="moon-v" id="moonAge">—</span></div>
+                <div class="moon-row"><span class="moon-k">NEXT</span><span class="moon-v" id="moonNext">—</span></div>
+
+                <div class="moon-actions">
+                  <button class="moon-btn" type="button" id="moonRefresh">&gt; refresh</button>
+                  <button class="moon-btn" type="button" id="moonUseGeo">&gt; use my location</button>
+                </div>
+
+                <div class="moon-note small" id="moonNote">alignment: calculating…</div>
+              </div>
+            </div>
+          </div>
+
+                    <!-- RIGHT COLUMN: Scanner -->
+          <div class="card scanner-card">
+            <strong>Earth Object Identifier</strong>
+            <span class="whisper">field calibration</span>
+
+            <div class="scanner-ui">
+              <div class="scanner-grid" id="scannerGrid" aria-label="Objects to scan">
+                <button class="scan-item" type="button" data-key="coffee">COFFEE</button>
+                <button class="scan-item" type="button" data-key="phone">PHONE</button>
+                <button class="scan-item" type="button" data-key="keys">KEYS</button>
+                <button class="scan-item" type="button" data-key="tote">TOTE BAG</button>
+                <button class="scan-item" type="button" data-key="water">WATER</button>
+              </div>
+
+              <div class="scanner-readout" role="status" aria-live="polite">
+                <div class="readout-header">
+                  <span>SCAN OUTPUT</span>
+                  <span id="signalStrength">SIGNAL: STABLE</span>
+                </div>
+                <pre id="readoutText">click an object to learn.</pre>
+
+                <div class="readout-actions">
+                  <button id="scanRandom" class="scan-btn" type="button">SCAN RANDOM</button>
+                  <button id="clearReadout" class="scan-btn" type="button">CLEAR</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEXT ROW (under ISS): Applications -->
+          <div class="card">
+            <strong>Upcoming</strong>
+            <span class="whisper">Developing</span>
+          </div>
+        </div>
+      </section>
+      <hr>
+    </div>
+
+    <script src="/scanner.js"></script>
+    <script src="/iss-radar.js"></script>
+    <script src="/sky.js"></script>
+    <script src="/moon.js"></script>
+  </body>
+</html>

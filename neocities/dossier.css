@@ -1,0 +1,124 @@
+/* Dossier styling (keeps your site font/colors via style.css variables) */
+
+.dossier{
+  display: block;
+}
+
+.dossier-top{
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.stamp{
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  text-align: center;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  background: rgba(0,0,0,0.20);
+  transform: rotate(-2deg);
+  box-shadow: 0 0 0 2px rgba(0,255,255,0.08) inset;
+}
+
+.idblock{
+  border: 1px dashed rgba(0,255,255,0.55);
+  padding: 12px;
+  background: rgba(0,0,0,0.18);
+}
+
+.idline{
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0,255,255,0.10);
+}
+
+.idline:last-child{
+  border-bottom: 0;
+}
+
+.k{
+  opacity: 0.85;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+}
+
+.v{
+  overflow-wrap: anywhere;
+}
+
+.status-ok{
+  font-weight: 700;
+}
+
+.dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-left: 10px;
+  background: var(--border);
+  box-shadow: 0 0 10px rgba(0,255,255,0.9);
+  animation: pulse 1.6s infinite ease-in-out;
+}
+
+@keyframes pulse{
+  0%{ transform: scale(0.9); opacity: 0.55; }
+  50%{ transform: scale(1.2); opacity: 1; }
+  100%{ transform: scale(0.9); opacity: 0.55; }
+}
+
+.soft{
+  border: 0;
+  border-top: 1px solid rgba(0,255,255,0.15);
+  margin: 16px 0;
+}
+
+.grid-2{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 820px){
+  .dossier-top{
+    grid-template-columns: 1fr;
+  }
+  .grid-2{
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel{
+  border: 1px solid rgba(0,255,255,0.25);
+  background: rgba(0,0,0,0.14);
+  padding: 12px;
+}
+
+.panel h2{
+  margin-top: 0;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+}
+
+.bullets{
+  margin: 8px 0 0 18px;
+}
+
+.small{
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.mono{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  line-height: 1.55;
+}
+
+.footerline{
+  margin-top: 12px;
+  opacity: 0.8;
+}

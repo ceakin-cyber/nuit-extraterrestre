@@ -1,0 +1,226 @@
+/* style.css */
+
+:root{
+  --bg: #000014;
+  --panel: #050520;
+  --border: #00ffff;
+  --text: #00ffff;
+  --muted: rgba(0, 255, 255, 0.75);
+  --title: #ff66ff;
+  --visited: #ff66ff;
+  --white: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: #00ffff;
+  font-family: "Courier New", monospace;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+#sky{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+/* Optional tiny controls (non-intrusive) */
+.sky-controls{
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px dashed rgba(0,255,255,0.55);
+  background: rgba(0,0,0,0.35);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+}
+
+.sky-controls input{
+  width: 92px;
+  font: inherit;
+  font-size: 12px;
+  color: var(--text);
+  background: rgba(0,0,0,0.18);
+  border: 1px dashed rgba(0,255,255,0.55);
+  padding: 4px 6px;
+}
+
+.sky-controls button{
+  font: inherit;
+  font-size: 12px;
+  color: var(--text);
+  background: rgba(0,0,0,0.18);
+  border: 1px dashed rgba(0,255,255,0.55);
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.sky-controls button:hover{
+  border-color: rgba(0,255,255,0.9);
+}
+
+a { color: #00ffff; text-decoration: none; }
+a:visited { color: #ff66ff; }
+a:hover { color:  #ffffff; text-decoration: underline; }
+a:focus { outline: 2px dashed var(--border); outline-offset: 3px; }
+
+.container {
+  max-width: 920px;
+  margin: 48px auto;
+  padding: 24px;
+  border: 1px solid #00ffff;
+  background: rgba(5, 5, 32, 0.92);
+
+  position: relative;   /* ADD */
+  z-index: 1;           /* ADD */
+}
+
+/* Cleaner header */
+.site-header{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+h1 {
+  color:#ff66ff;
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+}
+
+.tagline{
+  margin: 0;
+  color: rgba(0, 255, 255, 0.75);
+  font-size: 13px;
+}
+
+.statusline{
+  margin: 0;
+  font-size: 14px;
+}
+
+hr {
+  border: 0;
+  border-top: 1px dashed #00ffff;
+  margin: 18px 0;
+}
+
+h2 {
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+}
+
+/* Minimal nav bar */
+.nav{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.nav a{
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid rgba(0,255,255,0.55);
+  background: rgba(0,0,0,0.18);
+}
+
+.nav a:hover{
+  border-color: #00ffff;
+  text-decoration: none;
+}
+
+.section{
+  padding: 6px 0;
+}
+
+/* Two-tone voice: serious text + muted “whisper” */
+.whisper{
+  display: block;
+  margin-top: 4px;
+  color: rgba(0, 255, 255, 0.75);
+  font-size: 12px;
+}
+
+/* Cards for visual-first blocks */
+.grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.card{
+  border: 1px solid rgba(0,255,255,0.45);
+  padding: 14px;
+  background: rgba(0,0,0,0.18);
+}
+
+.card strong{
+  color:#ffffff;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid #00ffff;
+  margin: 4px 6px 0 0;
+  font-size: 12px;
+}
+
+.small {
+  font-size: 12px;
+  color: rgba(0, 255, 255, 0.75);
+}
+
+/* Optional: make lists less chunky */
+ul{
+  margin: 8px 0 0 18px;
+}
+
+@media (min-width: 700px){
+  .grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+#sky{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  display: block;
+}
+
+.sky-status{
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  z-index: 2;
+  font: inherit;
+  font-size: 12px;
+  color: var(--text);
+  background: rgba(0,0,0,0.45);
+  border: 1px dashed rgba(0,255,255,0.55);
+  padding: 6px 8px;
+  pointer-events: none;
+}

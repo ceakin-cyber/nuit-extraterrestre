@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier | nuit-extraterrestre</title>
+
+    <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/dossier.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+
+  <body>
+    <canvas id="sky"></canvas>
+
+      <div class="sky-controls" aria-label="Sky location controls">
+        <input id="skyLat" value="28.6">
+        <input id="skyLon" value="-81.3">
+        <button id="skyApply" type="button">apply</button>
+        <button id="skyGeo" type="button">use my location</button>
+    </div>
+    <div class="container">
+
+      <header class="site-header">
+        <h1>✦ Dossier ✦</h1>
+        <p class="statusline">Call Signs Not Just Expected But Required.</p>
+      </header>
+
+      <hr>
+
+      <div class="backlink">
+        <a href="index.html">← Return</a>
+      </div>
+
+      <hr>
+
+      <section class="dossier">
+
+        <div class="dossier-top">
+          <div class="stamp">PERSONAL FILE</div>
+
+          <div class="idblock">
+            <div class="idline"><span class="k">CALLSIGN</span><span class="v">nuit-extraterrestre</span></div>
+            <div class="idline"><span class="k">TYPE</span><span class="v">VISITOR / OPERATOR</span></div>
+            <div class="idline"><span class="k">MODE</span><span class="v">LOW-VISIBILITY</span></div>
+            <div class="idline"><span class="k">STATUS</span><span class="v status-ok">ACTIVE</span><span class="dot" aria-hidden="true"></span></div>
+            <div class="idline"><span class="k">LAST SYNC</span><span class="v" id="lastContact">syncing…</span></div>
+          </div>
+        </div>
+
+        <hr class="soft">
+
+        <div class="grid-2">
+          <div class="panel">
+            <h2>Sending Signals</h2>
+            <p class="small">
+              Won't receive unless authorized. 
+            </p>
+          </div>
+
+          <div class="panel">
+            <h2>Hosting</h2>
+            <ul class="bullets">
+              <li>Tools and small systems</li>
+              <li>Artifacts and references</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h2>Rules I Keep</h2>
+            <ul class="bullets">
+              <li>Nothing and everything here is finite.</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h2>Signal Quality</h2>
+            <ul class="bullets">
+              <li>Stable.</li>
+              <li>Improving with repeted interaction.</li>
+            </ul>
+          </div>
+        </div>
+
+        <hr class="soft">
+
+        <div class="panel">
+          <h2>Fragments</h2>
+          <p class="mono">
+            • I am looking and archiving.<br>
+            • If you’re reading this...hey girl.<br>
+          </p>
+        </div>
+
+        <div class="panel">
+          <h2>Access</h2>
+          <p class="small">
+            What access?
+          </p>
+        </div>
+
+        <div class="footerline small">
+          checksum: <span class="mono">NX-DOSSIER-Δ04</span> • visibility: low • logging: enabled
+        </div>
+
+      </section>
+
+    </div>
+
+    <script>
+      const el = document.getElementById('lastContact');
+      const d = new Date();
+      el.textContent = d.toLocaleString(undefined, {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit'
+      });
+    </script>
+    <script src="/sky.js"></script>
+  </body>
+</html>
