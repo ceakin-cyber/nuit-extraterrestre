@@ -229,3 +229,66 @@ ul{
   white-space: pre-wrap;
   line-height: 1.5;
 }
+
+.microstatus{
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.nav-commands a{
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+}
+
+.terminal-list{
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.terminal-list > div{
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0,255,255,0.08);
+}
+
+.terminal-list > div:last-child{
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.k{
+  color: var(--muted);
+  text-transform: lowercase;
+}
+
+.v{
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.panel-note{
+  margin: 8px 0 10px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.status-card{
+  background: rgba(0,0,0,0.14);
+}
+
+.terminal-list-compact > div{
+  gap: 16px;
+}
+
+.tx{
+  height: 150px;
+  overflow: hidden;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}

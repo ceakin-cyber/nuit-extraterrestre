@@ -9,28 +9,31 @@
 
   <body>
     <canvas id="sky"></canvas>
-      <div id="skyStatus" class="sky-status">sky: init</div>
-      <div class="sky-controls" aria-label="Sky location controls">
-        <input id="skyLat" value="28.6">
-        <input id="skyLon" value="-81.3">
-        <button id="skyApply" type="button">apply</button>
-        <button id="skyGeo" type="button">use my location</button>
+    <div id="skyStatus" class="sky-status">sky: init</div>
+
+    <div class="sky-controls" aria-label="Sky location controls">
+      <input id="skyLat" value="28.6">
+      <input id="skyLon" value="-81.3">
+      <button id="skyApply" type="button">apply</button>
+      <button id="skyGeo" type="button">use my location</button>
     </div>
+
     <div class="container">
 
       <header class="site-header">
         <h1>✦ nuit-extraterrestre ✦</h1>
         <p class="statusline">Interface: semi-operational.</p>
         <p class="tagline">Earth-based, mostly.</p>
+        <p class="microstatus">node: NX-HOME // signal: stable // visibility: low</p>
       </header>
 
       <hr>
 
       <section class="section">
-        <ul class="nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="projects.html">Tools</a></li>
-          <li><a href="about.html">Dossier</a></li>
+        <ul class="nav nav-commands">
+          <li><a href="index.html">&gt; home</a></li>
+          <li><a href="projects.html">&gt; tools</a></li>
+          <li><a href="about.html">&gt; dossier</a></li>
         </ul>
       </section>
 
@@ -38,126 +41,130 @@
 
       <section class="section">
         <div class="grid">
+
           <div class="card">
-            <strong>System readout</strong>
-            <ul>
-              <li><span class="whisper">node:</span> NX-HOME</li>
-              <li><span class="whisper">mode:</span> low-visibility</li>
-              <li><span class="whisper">state:</span> online <span class="dot" aria-hidden="true"></span></li>
-              <li><span class="whisper">last sync:</span> <span id="lastSync">syncing…</span></li>
-            </ul>
+            <strong>SYSTEM READOUT</strong>
+            <div class="terminal-list">
+              <div><span class="k">node</span><span class="v">NX-HOME</span></div>
+              <div><span class="k">mode</span><span class="v">LOW-VISIBILITY</span></div>
+              <div><span class="k">state</span><span class="v">ONLINE <span class="dot" aria-hidden="true"></span></span></div>
+              <div><span class="k">last sync</span><span class="v" id="lastSync">syncing…</span></div>
+            </div>
           </div>
 
-          
-        <div class="card" style="margin-top: 14px;">
-          <strong>Transmission</strong>
-          <div class="tx mono" id="txOut"></div>
+          <div class="card">
+            <strong>TRANSMISSION</strong>
+            <p class="panel-note">&gt; passive monitoring engaged</p>
+            <div class="tx mono" id="txOut"></div>
+          </div>
+
         </div>
       </section>
 
       <hr>
+
       <section class="section">
-        <p><strong>Site:</strong> under construction</p>
-        <span class="whisper">If something is missing, it’s either not ready or not real.</span>
+        <div class="card status-card">
+          <strong>ARCHIVE STATUS</strong>
+          <div class="terminal-list terminal-list-compact">
+            <div><span class="k">site</span><span class="v">UNDER CONSTRUCTION</span></div>
+            <div><span class="k">modules</span><span class="v">PARTIAL</span></div>
+            <div><span class="k">condition</span><span class="v">STABLE</span></div>
+            <div><span class="k">note</span><span class="v">If something is missing, it is either not ready or not real.</span></div>
+          </div>
+        </div>
       </section>
 
       <hr>
 
     </div>
-<script>
-  // last sync timestamp
-  const lastSync = document.getElementById('lastSync');
-  const d = new Date();
-  lastSync.textContent = d.toLocaleString(undefined, {
-    year: 'numeric', month: '2-digit', day: '2-digit',
-    hour: '2-digit', minute: '2-digit'
-  });
 
-  // --- AMBIENT TRANSMISSION FEED (fixed loop) ---
+    <script>
+      const lastSync = document.getElementById('lastSync');
+      const d = new Date();
+      lastSync.textContent = d.toLocaleString(undefined, {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit'
+      });
 
-  const out = document.getElementById('txOut');
+      const out = document.getElementById('txOut');
 
-const msgs = [
-  "Signal stable.",
-  "Atmosphere holding.",
-  "Background noise acceptable.",
-  "No anomalies detected.",
-  "Surface lights observed.",
-  "Low-visibility sustained.",
-  "Archive quietly expanding.",
-  "Human activity minimal.",
-  "Telemetry synchronized.",
-  "Drift within tolerance.",
-  "Orbital debris catalog updated.",
-  "Thermal readings nominal.",
-  "Transmission integrity verified.",
-  "Listening for distant replies.",
-  "Local noise field fluctuating.",
-  "Signal reflection detected.",
-  "Archive sector indexing complete.",
-  "Observation window open.",
-  "Surface motion detected.",
-  "Environmental data streaming.",
-  "Probe memory allocation stable.",
-  "Passive monitoring engaged.",
-  "Stellar reference alignment confirmed.",
-  "Background radiation within tolerance.",
-  "External interface responsive.",
-  "Signal path unobstructed.",
-  "Night cycle active.",
-  "Archive checksum verified.",
-  "Long-range sensors idle.",
-  "Surface signals faint but present."
-];
+      const msgs = [
+        "Signal stable.",
+        "Atmosphere holding.",
+        "Background noise acceptable.",
+        "No anomalies detected.",
+        "Surface lights observed.",
+        "Low-visibility sustained.",
+        "Archive quietly expanding.",
+        "Human activity minimal.",
+        "Telemetry synchronized.",
+        "Drift within tolerance.",
+        "Orbital debris catalog updated.",
+        "Thermal readings nominal.",
+        "Transmission integrity verified.",
+        "Listening for distant replies.",
+        "Local noise field fluctuating.",
+        "Signal reflection detected.",
+        "Archive sector indexing complete.",
+        "Observation window open.",
+        "Surface motion detected.",
+        "Environmental data streaming.",
+        "Probe memory allocation stable.",
+        "Passive monitoring engaged.",
+        "Stellar reference alignment confirmed.",
+        "Background radiation within tolerance.",
+        "External interface responsive.",
+        "Signal path unobstructed.",
+        "Night cycle active.",
+        "Archive checksum verified.",
+        "Long-range sensors idle.",
+        "Surface signals faint but present."
+      ];
 
-  const TYPE_DELAY_MS = 70;   // slower typing
-  const PAUSE_MS = 4500;      // pause between lines
-  const MAX_LINES = 10;
+      const TYPE_DELAY_MS = 70;
+      const PAUSE_MS = 4500;
+      const MAX_LINES = 4;
 
-  let currentLine = "";
-  let charIndex = 0;
-  let lines = [];
+      let currentLine = "";
+      let charIndex = 0;
+      let lines = [];
 
-  function buildLine() {
-    const now = new Date();
-    const stamp = now.toLocaleTimeString(undefined, {
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-    const msg = msgs[Math.floor(Math.random() * msgs.length)];
-    return `[${stamp}] ${msg}`;
-  }
+      function buildLine() {
+        const now = new Date();
+        const stamp = now.toLocaleTimeString(undefined, {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+        const msg = msgs[Math.floor(Math.random() * msgs.length)];
+        return `[${stamp}] ${msg}`;
+      }
 
-  function startNextLine() {
-    currentLine = buildLine();
-    charIndex = 0;
+      function startNextLine() {
+        currentLine = buildLine();
+        charIndex = 0;
+        out.textContent = lines.join("\n") + (lines.length ? "\n" : "");
+        typeStep();
+      }
 
-    // Ensure the box always reflects the stored lines + the in-progress line
-    out.textContent = lines.join("\n") + (lines.length ? "\n" : "");
-    typeStep();
-  }
+      function typeStep() {
+        if (charIndex < currentLine.length) {
+          out.textContent += currentLine[charIndex];
+          charIndex++;
+          setTimeout(typeStep, TYPE_DELAY_MS);
+          return;
+        }
 
-  function typeStep() {
-    if (charIndex < currentLine.length) {
-      out.textContent += currentLine[charIndex];
-      charIndex++;
-      setTimeout(typeStep, TYPE_DELAY_MS);
-      return;
-    }
+        lines.push(currentLine);
+        if (lines.length > MAX_LINES) lines.shift();
 
-    // Line finished: commit it
-    lines.push(currentLine);
-    if (lines.length > MAX_LINES) lines.shift();
+        out.textContent = lines.join("\n");
+        setTimeout(startNextLine, PAUSE_MS);
+      }
 
-    out.textContent = lines.join("\n");
+      startNextLine();
+    </script>
 
-    // Pause, then begin the next line AND restart typing
-    setTimeout(startNextLine, PAUSE_MS);
-  }
-
-  // Start
-  startNextLine();
-</script>
     <script src="/sky.js"></script>
   </body>
 </html>
