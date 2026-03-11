@@ -15,7 +15,7 @@
 /* Radar scope: responsive square */
 .iss-radar__scope{
   width: 100%;
-  max-width: 340px;             /* keeps it from getting huge */
+  max-width: 280px;             /* keeps it from getting huge */
   aspect-ratio: 1 / 1;          /* always a square */
   border-radius: 50%;
   position: relative;
