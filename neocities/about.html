@@ -84,13 +84,20 @@
       </div>
     </div>
 
-    <div class="panel terminal-block">
-      <h2>SIGNAL QUALITY</h2>
-      <div class="terminal-copy">
-        <div>&gt; stable</div>
-        <div>&gt; improving with repeated interaction</div>
-      </div>
-    </div>
+<div class="panel quality-panel">
+  <h2>Signal Quality</h2>
+
+  <div class="terminal-signal" aria-hidden="true" id="terminalSignal">
+    <span class="term-col" data-level="1"></span>
+    <span class="term-col" data-level="2"></span>
+    <span class="term-col" data-level="3"></span>
+    <span class="term-col" data-level="4"></span>
+  </div>
+
+  <div class="mono quality-status" id="qualityStatus">
+    &gt; SIGNAL: STABLE
+  </div>
+</div>
 
   </div>
 
@@ -127,6 +134,38 @@
         hour: '2-digit', minute: '2-digit'
       });
     </script>
+    <script>
+  const terminalSignal = document.getElementById("terminalSignal");
+  const qualityStatus = document.getElementById("qualityStatus");
+
+  if (terminalSignal && qualityStatus) {
+    const cols = Array.from(terminalSignal.querySelectorAll(".term-col"));
+
+    const states = [
+      { levels: [1, 2, 3, 4], text: "> SIGNAL: CLEAR" },
+      { levels: [1, 2, 3, 3], text: "> SIGNAL: STABLE" },
+      { levels: [1, 2, 2, 3], text: "> SIGNAL: ACCEPTABLE" },
+      { levels: [1, 1, 2, 3], text: "> SIGNAL: FLUCTUATING" },
+      { levels: [1, 2, 3, 4], text: "> INTERFERENCE: LOW" },
+      { levels: [1, 2, 3, 3], text: "> UPLINK: HOLDING" }
+    ];
+
+    function applyState(state) {
+      cols.forEach((col, i) => {
+        col.className = "term-col is-" + state.levels[i];
+      });
+      qualityStatus.textContent = state.text;
+    }
+
+    function tick() {
+      const state = states[Math.floor(Math.random() * states.length)];
+      applyState(state);
+    }
+
+    tick();
+    setInterval(tick, 9000);
+  }
+</script>      
     <script src="/sky.js"></script>
   </body>
 </html>
