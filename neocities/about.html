@@ -103,14 +103,10 @@
 
   <hr class="soft">
 
-  <div class="panel terminal-block">
-    <h2>FRAGMENTS</h2>
-    <div class="terminal-copy mono">
-      <div>&gt; I am looking and archiving.</div>
-      <div>&gt; If you're reading this...hey girl.</div>
-    </div>
-  </div>
-
+<div class="panel fragment-panel">
+  <h2>Fragments</h2>
+  <canvas id="fragmentViewport" aria-hidden="true"></canvas>
+</div>
   <div class="panel terminal-block">
     <h2>ACCESS</h2>
     <div class="terminal-copy">
@@ -167,5 +163,71 @@
   }
 </script>      
     <script src="/sky.js"></script>
+    <script>
+(function () {
+  const source = document.getElementById("sky");
+  const view = document.getElementById("fragmentViewport");
+  if (!source || !view) return;
+
+  const ctx = view.getContext("2d");
+
+  // lower = more zoomed in / denser
+  // higher = less zoomed in
+  const ZOOM = 1;
+
+  // choose which part of the sky to sample
+  let anchorX = 0.58;
+  let anchorY = 0.34;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = view.getBoundingClientRect();
+
+    view.width = Math.max(1, Math.floor(rect.width * dpr));
+    view.height = Math.max(1, Math.floor(rect.height * dpr));
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.imageSmoothingEnabled = false;
+  }
+
+  function draw() {
+    const sw = source.width;
+    const sh = source.height;
+    const dw = view.width;
+    const dh = view.height;
+
+    if (!sw || !sh || !dw || !dh) {
+      requestAnimationFrame(draw);
+      return;
+    }
+
+    const targetAspect = dw / dh;
+
+    // start from a zoom size, but preserve aspect ratio
+    let srcW = sw * ZOOM;
+    let srcH = srcW / targetAspect;
+
+    if (srcH > sh * ZOOM) {
+      srcH = sh * ZOOM;
+      srcW = srcH * targetAspect;
+    }
+
+    let sx = (sw * anchorX) - (srcW / 2);
+    let sy = (sh * anchorY) - (srcH / 2);
+
+    sx = Math.max(0, Math.min(sw - srcW, sx));
+    sy = Math.max(0, Math.min(sh - srcH, sy));
+
+    ctx.clearRect(0, 0, dw, dh);
+    ctx.drawImage(source, sx, sy, srcW, srcH, 0, 0, dw, dh);
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener("resize", resize);
+  draw();
+})();
+</script>
   </body>
 </html>
