@@ -112,3 +112,135 @@
   color: var(--muted);
   font-size: 12px;
 }
+
+.signal-panel{
+  overflow: hidden;
+}
+
+.signal-beacon{
+  position: relative;
+  height: 120px;
+  margin-top: 8px;
+  border: 1px dashed rgba(0,255,255,0.28);
+  background:
+    linear-gradient(to right, rgba(0,255,255,0.03), rgba(0,0,0,0) 35%),
+    rgba(0,0,0,0.12);
+}
+
+.signal-origin{
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  transform: translateY(-50%);
+  background: var(--border);
+  box-shadow:
+    0 0 10px rgba(0,255,255,0.95),
+    0 0 20px rgba(0,255,255,0.35);
+}
+
+.signal-origin::after{
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: -6px;
+  width: 22px;
+  height: 22px;
+  border: 1px solid rgba(0,255,255,0.35);
+  border-radius: 999px;
+  animation: originPulse 2.2s ease-in-out infinite;
+}
+
+.signal-target{
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 0 8px rgba(255,255,255,0.55);
+  opacity: 0.75;
+}
+
+.signal-beam{
+  position: absolute;
+  left: 28px;
+  top: 50%;
+  height: 2px;
+  width: 0;
+  transform: translateY(-50%);
+  background: linear-gradient(
+    to right,
+    rgba(0,255,255,0.0) 0%,
+    rgba(0,255,255,0.95) 25%,
+    rgba(255,255,255,0.95) 55%,
+    rgba(0,255,255,0.0) 100%
+  );
+  box-shadow: 0 0 10px rgba(0,255,255,0.45);
+  opacity: 0;
+}
+
+.signal-beam-1{
+  animation: sendBeam 2.8s linear infinite;
+}
+
+.signal-beam-2{
+  animation: sendBeam 2.8s linear infinite 0.9s;
+}
+
+.signal-beam-3{
+  animation: sendBeam 2.8s linear infinite 1.8s;
+}
+
+.signal-caption{
+  margin-top: 10px;
+}
+
+@keyframes sendBeam{
+  0%{
+    width: 0;
+    opacity: 0;
+  }
+  8%{
+    opacity: 1;
+  }
+  55%{
+    width: calc(100% - 68px);
+    opacity: 1;
+  }
+  100%{
+    width: calc(100% - 68px);
+    opacity: 0;
+  }
+}
+
+@keyframes originPulse{
+  0%, 100%{
+    transform: scale(0.9);
+    opacity: 0.45;
+  }
+  50%{
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.signal-target{
+  animation: targetBlink 2.8s linear infinite;
+}
+
+@keyframes targetBlink{
+  0%, 75%, 100%{
+    opacity: 0.45;
+    transform: translateY(-50%) scale(1);
+  }
+  82%{
+    opacity: 1;
+    transform: translateY(-50%) scale(1.45);
+    box-shadow: 0 0 14px rgba(255,255,255,0.9);
+  }
+}
