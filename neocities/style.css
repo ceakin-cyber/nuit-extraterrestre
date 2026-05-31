@@ -4,14 +4,14 @@
   --bg: #020403;
   --panel: #06100b;
   --panel-2: #020705;
-  --border: #53ff9b;
+  --border: #9cffc6;
   --border-dim: rgba(83, 255, 155, 0.34);
   --text: #9cffc6;
-  --muted: rgba(156, 255, 198, 0.66);
-  --title: #b8ffd3;
-  --visited: #7dffad;
-  --alert: #53ff9b;
-  --white: #d8ffe6;
+  --muted: #9cffc6;
+  --title: #9cffc6;
+  --visited: #9cffc6;
+  --alert: #9cffc6;
+  --white: #9cffc6;
   --shadow: rgba(0, 0, 0, 0.78);
 }
 
@@ -372,6 +372,15 @@ ul{
 
 .status-card{
   background: rgba(0,0,0,0.34);
+}
+
+.status-card,
+.status-card strong,
+.status-card strong::before,
+.status-card strong::after,
+.status-card .k,
+.status-card .v{
+  color: var(--text);
 }
 
 .terminal-list-compact > div{
