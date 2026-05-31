@@ -24,9 +24,9 @@
 .scan-item,
 .scan-btn{
   font: inherit;
-  color: #00ffff;
-  background: rgba(0,0,0,0.18);
-  border: 1px dashed rgba(0,255,255,0.55);
+  color: var(--text);
+  background: var(--panel-2);
+  border: 1px solid var(--border-dim);
   padding: 10px 10px;
   cursor: pointer;
   text-align: left;
@@ -38,25 +38,25 @@
   white-space: normal;     /* allow wrapping */
   overflow-wrap: normal; /* prevent overflow */
   word-break: break-word;  /* extra safety */
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .scan-item:hover,
 .scan-btn:hover{
-  border-color: #00ffff;
-  color: #ffffff;
+  border-color: var(--border);
+  color: var(--title);
   text-decoration: none;
 }
 
 .scan-item:focus,
 .scan-btn:focus{
-  outline: 2px dashed #00ffff;
+  outline: 2px dashed var(--border);
   outline-offset: 3px;
 }
 
 .scanner-readout{
-  border: 1px dashed rgba(0,255,255,0.55);
-  background: rgba(0,0,0,0.18);
+  border: 1px solid var(--border-dim);
+  background: rgba(0,0,0,0.42);
   padding: 10px;
 }
 
@@ -64,8 +64,8 @@
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  font-size: 12px;
-  color: rgba(0, 255, 255, 0.75);
+  font-size: 15px;
+  color: var(--muted);
   margin-bottom: 8px;
 }
 
@@ -74,7 +74,7 @@
   min-height: 170px;
   white-space: pre-wrap;
   word-break: break-word;
-  color: #00ffff;
+  color: var(--text);
 }
 
 .readout-actions{
@@ -90,7 +90,7 @@
 
 #readoutText {
   font-family: "Courier New", monospace;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.4;
 }
 

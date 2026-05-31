@@ -5,18 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>nuit-extraterrestre</title>
     <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/dossier.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/iss-radar.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/moon.css" rel="stylesheet" type="text/css" media="all">
   </head>
 
   <body>
     <canvas id="sky"></canvas>
-    <div id="skyStatus" class="sky-status">sky: init</div>
-
-    <div class="sky-controls" aria-label="Sky location controls">
-      <input id="skyLat" value="28.6">
-      <input id="skyLon" value="-81.3">
-      <button id="skyApply" type="button">apply</button>
-      <button id="skyGeo" type="button">use my location</button>
-    </div>
 
     <div class="container">
 
@@ -30,21 +25,12 @@
       <hr>
 
       <section class="section">
-        <ul class="nav nav-commands">
-          <li><a href="index.html">&gt; home</a></li>
-          <li><a href="projects.html">&gt; tools</a></li>
-          <li><a href="about.html">&gt; dossier</a></li>
-        </ul>
-      </section>
-
-      <hr>
-
-      <section class="section">
         <div class="grid">
 
           <div class="card">
             <strong>SYSTEM READOUT</strong>
             <div class="terminal-list">
+              <div><span class="k">callsign</span><span class="v">nuit-extraterrestre</span></div>
               <div><span class="k">node</span><span class="v">NX-HOME</span></div>
               <div><span class="k">mode</span><span class="v">LOW-VISIBILITY</span></div>
               <div><span class="k">state</span><span class="v">ONLINE <span class="dot" aria-hidden="true"></span></span></div>
@@ -56,6 +42,113 @@
             <strong>INCOMING TRANSMISSION</strong>
             <p class="panel-note">&gt; passive monitoring engaged</p>
             <div class="tx mono" id="txOut"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <hr>
+
+      <section class="section">
+        <div class="grid tools-grid">
+
+          <div class="card iss-card">
+            <strong>ISS Locator</strong>
+            <span class="whisper">live telemetry (auto-updating)</span>
+            <div id="issRadarMount"></div>
+          </div>
+
+          <div class="card moon-card">
+            <strong>Lunar Alignment</strong>
+            <span class="whisper">real phase + illumination (USNO)</span>
+
+            <div class="moon-ui" id="moonMount" aria-live="polite">
+              <div class="moon-left">
+                <div class="moon-disc" id="moonDisc" role="img" aria-label="Moon phase visualization"></div>
+              </div>
+
+              <div class="moon-readout">
+                <div class="moon-row"><span class="moon-k">PHASE</span><span class="moon-v" id="moonPhase">-</span></div>
+                <div class="moon-row"><span class="moon-k">ILLUM</span><span class="moon-v" id="moonIllum">-</span></div>
+                <div class="moon-row"><span class="moon-k">AGE</span><span class="moon-v" id="moonAge">-</span></div>
+                <div class="moon-row"><span class="moon-k">NEXT</span><span class="moon-v" id="moonNext">-</span></div>
+
+                <div class="moon-location" aria-label="Moon observer location controls">
+                  <input class="moon-input" id="moonLat" value="40.7128" aria-label="Moon latitude">
+                  <input class="moon-input" id="moonLon" value="-74.0060" aria-label="Moon longitude">
+                  <button class="moon-btn" type="button" id="moonApply">&gt; apply</button>
+                </div>
+
+                <div class="moon-actions">
+                  <button class="moon-btn" type="button" id="moonRefresh">&gt; refresh</button>
+                  <button class="moon-btn" type="button" id="moonUseGeo">&gt; use my location</button>
+                </div>
+
+                <div class="moon-note small" id="moonNote">alignment: calculating...</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <hr>
+
+      <section class="section home-signals">
+        <div class="grid-2 terminal-grid">
+
+          <div class="panel signal-panel">
+            <h2>Sending Signals</h2>
+
+            <div class="signal-beacon" aria-hidden="true">
+              <div class="signal-origin"></div>
+              <div class="signal-beam signal-beam-1"></div>
+              <div class="signal-beam signal-beam-2"></div>
+              <div class="signal-beam signal-beam-3"></div>
+              <div class="signal-target"></div>
+            </div>
+
+            <p class="small signal-caption">
+              outbound only / receiver unknown
+            </p>
+          </div>
+
+          <div class="panel terminal-block">
+            <h2>OPERATING RULES</h2>
+            <div class="terminal-copy">
+              <div>&gt; Observe before being observed.</div>
+              <div>&gt; Transmit only when silence fails.</div>
+              <div>&gt; Leave no pattern that can be followed.</div>
+              <div>&gt; Archive what changes you.</div>
+            </div>
+          </div>
+
+          <div class="panel quality-panel">
+            <h2>Signal Quality</h2>
+
+            <div class="terminal-signal" aria-hidden="true" id="terminalSignal">
+              <span class="term-col" data-level="1"></span>
+              <span class="term-col" data-level="2"></span>
+              <span class="term-col" data-level="3"></span>
+              <span class="term-col" data-level="4"></span>
+            </div>
+
+            <div class="mono quality-status" id="qualityStatus">
+              &gt; SIGNAL: STABLE
+            </div>
+          </div>
+
+          <div class="panel relay-panel">
+            <h2>Relay Queue</h2>
+            <div class="relay-readout" aria-hidden="true">
+              <div><span>01</span><span>carrier ping</span><span>sent</span></div>
+              <div><span>02</span><span>mirror sweep</span><span>hold</span></div>
+              <div><span>03</span><span>quiet packet</span><span>armed</span></div>
+              <div><span>04</span><span>return path</span><span>none</span></div>
+            </div>
+            <div class="mono relay-status">
+              &gt; QUEUE: WATCHING
+            </div>
           </div>
 
         </div>
@@ -76,6 +169,16 @@
       </section>
 
       <hr>
+
+      <section class="section sky-footer">
+        <div class="sky-controls" aria-label="Sky location controls">
+          <input id="skyLat" value="28.6">
+          <input id="skyLon" value="-81.3">
+          <button id="skyApply" type="button">apply</button>
+          <button id="skyGeo" type="button">use my location</button>
+        </div>
+        <div id="skyStatus" class="sky-status">sky: init</div>
+      </section>
 
     </div>
 
@@ -163,8 +266,41 @@
       }
 
       startNextLine();
+
+      const terminalSignal = document.getElementById("terminalSignal");
+      const qualityStatus = document.getElementById("qualityStatus");
+
+      if (terminalSignal && qualityStatus) {
+        const cols = Array.from(terminalSignal.querySelectorAll(".term-col"));
+
+        const states = [
+          { levels: [1, 2, 3, 4], text: "> SIGNAL: CLEAR" },
+          { levels: [1, 2, 3, 3], text: "> SIGNAL: STABLE" },
+          { levels: [1, 2, 2, 3], text: "> SIGNAL: ACCEPTABLE" },
+          { levels: [1, 1, 2, 3], text: "> SIGNAL: FLUCTUATING" },
+          { levels: [1, 2, 3, 4], text: "> INTERFERENCE: LOW" },
+          { levels: [1, 2, 3, 3], text: "> UPLINK: HOLDING" }
+        ];
+
+        function applyState(state) {
+          cols.forEach((col, i) => {
+            col.className = "term-col is-" + state.levels[i];
+          });
+          qualityStatus.textContent = state.text;
+        }
+
+        function tick() {
+          const state = states[Math.floor(Math.random() * states.length)];
+          applyState(state);
+        }
+
+        tick();
+        setInterval(tick, 9000);
+      }
     </script>
 
     <script src="/sky.js"></script>
+    <script src="/iss-radar.js"></script>
+    <script src="/moon.js"></script>
   </body>
 </html>

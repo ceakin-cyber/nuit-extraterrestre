@@ -2,13 +2,24 @@
 .moon-ui{
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
+  flex: 1;
+  justify-content: space-between;
   margin-top: 10px;
 }
+
+.moon-card{
+  display: flex;
+  flex-direction: column;
+}
+
 .moon-left{
   width: 100%;
+  flex: 1;
   display: flex;
+  align-items: center;
   justify-content: center;
+  min-height: 150px;
 }
 
 @media (max-width: 520px){
@@ -16,14 +27,14 @@
 }
 
 .moon-disc{
-  width: 110px;
-  height: 110px;
+  width: clamp(120px, 34vw, 170px);
+  height: clamp(120px, 34vw, 170px);
   border-radius: 999px;
   position: relative;
-  border: 1px dashed rgba(0,255,255,0.55);
-  background: rgba(0,0,0,0.18);
+  border: 1px solid var(--border-dim);
+  background: rgba(0,0,0,0.42);
   overflow: hidden;
-  box-shadow: 0 0 0 2px rgba(0,255,255,0.06) inset;
+  box-shadow: 0 0 0 2px rgba(83,255,155,0.08) inset;
 }
 
 /* base “moon body” */
@@ -50,8 +61,8 @@
 
 .moon-readout{
   width: 100%;
-  border: 1px dashed rgba(0,255,255,0.55);
-  background: rgba(0,0,0,0.18);
+  border: 1px solid var(--border-dim);
+  background: rgba(0,0,0,0.42);
   padding: 10px;
   box-sizing: border-box;
 }
@@ -73,16 +84,49 @@
   flex-wrap: wrap;
 }
 
+.moon-location{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.moon-input{
+  min-width: 0;
+  font: inherit;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--panel-2);
+  border: 1px solid var(--border-dim);
+  padding: 8px 10px;
+}
+
 .moon-btn{
   font: inherit;
   color: inherit;
-  background: rgba(0,0,0,0.18);
-  border: 1px dashed rgba(0,255,255,0.55);
+  background: var(--panel-2);
+  border: 1px solid var(--border-dim);
   padding: 8px 10px;
   cursor:pointer;
   text-align:left;
 }
 
-.moon-btn:hover{ border-color: rgba(0,255,255,0.9); }
+.moon-btn:hover{
+  border-color: var(--border);
+  color: var(--title);
+}
 
 .moon-note{ margin-top: 8px; opacity: 0.75; }
+
+@media (min-width: 700px){
+  .moon-ui{
+    display: grid;
+    grid-template-rows: minmax(160px, 1fr) auto;
+  }
+}
+
+@media (max-width: 520px){
+  .moon-location{
+    grid-template-columns: 1fr;
+  }
+}

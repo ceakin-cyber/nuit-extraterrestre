@@ -9,10 +9,36 @@
   const noteEl  = document.getElementById("moonNote");
   const refreshBtn = document.getElementById("moonRefresh");
   const useGeoBtn  = document.getElementById("moonUseGeo");
+  const latInput = document.getElementById("moonLat");
+  const lonInput = document.getElementById("moonLon");
+  const applyBtn = document.getElementById("moonApply");
 
   if (!phaseEl || !illumEl || !ageEl || !nextEl || !discEl || !noteEl) return;
 
   let observer = { name: "NYC", lat: 40.7128, lon: -74.0060 };
+
+  function syncInputs() {
+    if (latInput) latInput.value = String(Number(observer.lat).toFixed(4));
+    if (lonInput) lonInput.value = String(Number(observer.lon).toFixed(4));
+  }
+
+  function setObserver(name, lat, lon) {
+    if (
+      !Number.isFinite(lat) ||
+      !Number.isFinite(lon) ||
+      lat < -90 ||
+      lat > 90 ||
+      lon < -180 ||
+      lon > 180
+    ) {
+      noteEl.textContent = "alignment: invalid observer coordinates";
+      return false;
+    }
+
+    observer = { name, lat, lon };
+    syncInputs();
+    return true;
+  }
 
   function ymdLocal(d = new Date()) {
     return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; // YYYY-M-D
@@ -144,6 +170,12 @@
 
   refreshBtn?.addEventListener("click", update);
 
+  applyBtn?.addEventListener("click", () => {
+    const lat = parseFloat(latInput ? latInput.value : "");
+    const lon = parseFloat(lonInput ? lonInput.value : "");
+    if (setObserver("CUSTOM", lat, lon)) update();
+  });
+
   useGeoBtn?.addEventListener("click", () => {
     if (!navigator.geolocation) {
       noteEl.textContent = "alignment: geolocation unsupported (using default)";
@@ -152,11 +184,11 @@
     noteEl.textContent = "alignment: requesting location…";
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        observer = { name: "YOU", lat: pos.coords.latitude, lon: pos.coords.longitude };
+        setObserver("YOU", pos.coords.latitude, pos.coords.longitude);
         update();
       },
       () => {
-        observer = { name: "NYC", lat: 40.7128, lon: -74.0060 };
+        setObserver("NYC", 40.7128, -74.0060);
         noteEl.textContent = "alignment: location denied (using default)";
         update();
       },
@@ -164,5 +196,6 @@
     );
   });
 
+  syncInputs();
   update();
 })();

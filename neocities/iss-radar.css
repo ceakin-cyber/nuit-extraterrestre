@@ -21,8 +21,8 @@
   position: relative;
   overflow: hidden;
 
-  border: 1px dashed rgba(0,255,255,0.55);
-  background: rgba(0,0,0,0.18);
+  border: 1px solid var(--border-dim);
+  background: rgba(0,0,0,0.42);
 }
 
 /* Center the radar within the card */
@@ -44,7 +44,7 @@
   content:"";
   position:absolute;
   inset: 12%;
-  border: 1px solid rgba(0,255,255,0.18);
+  border: 1px solid rgba(83,255,155,0.20);
   border-radius: 50%;
 }
 .iss-radar__rings::after{ inset: 36%; }
@@ -53,7 +53,7 @@
 .iss-radar__cross::after{
   content:"";
   position:absolute;
-  background: rgba(0,255,255,0.10);
+  background: rgba(83,255,155,0.14);
 }
 .iss-radar__cross::before{
   left:50%; top:0; width:1px; height:100%;
@@ -69,10 +69,10 @@
   inset:-10%;
   background: conic-gradient(
     from 0deg,
-    rgba(0,255,255,0.00) 0deg,
-    rgba(0,255,255,0.12) 18deg,
-    rgba(0,255,255,0.00) 42deg,
-    rgba(0,255,255,0.00) 360deg
+    rgba(83,255,155,0.00) 0deg,
+    rgba(83,255,155,0.18) 18deg,
+    rgba(83,255,155,0.00) 42deg,
+    rgba(83,255,155,0.00) 360deg
   );
   animation: issSweep 4.2s linear infinite;
 }
@@ -88,7 +88,7 @@
   top: 50%;
   opacity: 0;
   background: rgba(255,255,255,0.92);
-  box-shadow: 0 0 10px rgba(0,255,255,0.45);
+  box-shadow: 0 0 10px rgba(83,255,155,0.55);
 }
 .iss-radar__blip.is-on{
   opacity: 1;
@@ -102,8 +102,8 @@
 /* Readout should NOT become a tall skinny tower */
 .iss-readout{
   width: 100%;
-  border: 1px dashed rgba(0,255,255,0.55);
-  background: rgba(0,0,0,0.18);
+  border: 1px solid var(--border-dim);
+  background: rgba(0,0,0,0.42);
   padding: 10px;
   box-sizing: border-box;
 }
@@ -131,19 +131,20 @@
 .iss-btn{
   font: inherit;
   color: inherit;
-  background: rgba(0,0,0,0.18);
-  border: 1px dashed rgba(0,255,255,0.55);
+  background: var(--panel-2);
+  border: 1px solid var(--border-dim);
   padding: 8px 10px;
   cursor:pointer;
   text-align:left;
 }
 
 .iss-btn:hover{
-  border-color: rgba(0,255,255,0.9);
+  border-color: var(--border);
+  color: var(--title);
 }
 
 .iss-note{
   margin-top: 8px;
-  font-size: 12px;
+  font-size: 15px;
   opacity: 0.75;
 }
